@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Diary - chirag sharma</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: #222;
+            box-sizing: border-box;
+        }
+
+        /* Header */
+        header {
+            background-color: #004aad;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            position: relative;
+            z-index: -2;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        header img {
+            height: 40px;
+            cursor: pointer;
+            position: relative;
+            z-index: -1;
+            transition: transform 0.2s;
+        }
+
+        header a div {
+            height: 53px;
+            width: 53px;
+            border: 8px solid #baebe9;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px 40px;
+        }
+
+        .days-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .day-box {
+            background: linear-gradient(135deg, #9cc3ff, #c7dcff);
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px 0;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-box:hover {
+            background: linear-gradient(135deg, #6ea8ff, #a8caff);
+            transform: translateY(-2px);
+        }
+
+        #display-area {
+            border: 2px solid #d0d0d0;
+            border-radius: 12px;
+            padding: 25px;
+            background-color: #fff;
+            text-align: left;
+            line-height: 1.6rem;
+            min-height: 250px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        #display-area h2 {
+            color: #004aad;
+            margin-bottom: 10px;
+        }
+
+        #display-area img {
+            max-width: 250px;
+            margin-top: 15px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #004aad;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.3rem;
+            }
+
+            .day-box {
+                padding: 15px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="https://www.gndec.ac.in" target="_blank">
+            <div><img src="gndec.webp" alt="Gender Logo" /></div>
+        </a>
+        <h1>Daily Diary</h1>
+    </header>
+
+    <main>
+        <div class="days-container" id="daysContainer">
+            <!-- JS will create Day 1–22 -->
+        </div>
+
+        <div id="display-area">
+            <h2>Select a Day</h2>
+            <p>Daily work and image will appear here.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>
+            <strong>Name:</strong> chirag sharma | <strong>URN:</strong> 2302503 |
+            <strong>CRN:</strong> 2315047 | <strong>Class:</strong> CSE-A
+        </p>
+    </footer>
+
+    <script>
+        const days = {
+            1: `<strong>Introduction to MERN Stack & Development Environment Setup</strong><br/>
+What I Learned:
+MERN Stack Overview: Understanding the four core technologies
+  MongoDB: NoSQL database for data storage
+  Express.js: Web framework for Node.js
+  React.js: Frontend library for building user interfaces
+  Node.js: JavaScript runtime for server-side development
+Development Environment Setup:
+   Installed Node.js and npm
+   Set up Visual Studio Code with essential extensions
+   Configured Git for version control
+   Created first project folder structure
+Basic JavaScript ES6+ Review: Arrow functions, destructuring, modules
+Understanding Full-Stack Architecture: Client-server communication basics
+
+ Practical Tasks:
+ Created GitHub repository for MERN projects
+ Set up development environment
+ Built a simple "Hello World" Node.js application
+.`,
+            2: `<strong> Node.js Fundamentals</strong><br/>
+     What I Learned:
+Node.js Core Concepts:
+   Event-driven, non-blocking I/O model
+   CommonJS modules (require/module.exports)
+   Built-in modules: fs, path, http, os
+NPM Package Management:
+   Understanding package.json
+   Installing dependencies (local vs global)
+   Using npm scripts
+Asynchronous Programming:
+   Callbacks and callback hell
+   Promises and Promise chaining
+   Async/await syntax
+
+ Practical Tasks:
+ Built file system operations using fs module
+ Created a basic HTTP server
+ Practiced async/await with file operations
+ Set up package.json with custom scripts  .`,
+            3: `<strong> Express.js Basics</strong><br/>
+      What I Learned:
+Express.js Framework:
+   Installing and setting up Express
+   Understanding middleware concept
+   Routing basics (GET, POST, PUT, DELETE)
+   Request and Response objects
+Middleware Functions:
+   Built-in middleware (express.json, express.static)
+   Custom middleware creation
+   Error handling middleware
+Template Engines: Brief introduction to EJS and Handlebars
+
+### Practical Tasks:
+ Created first Express server
+ Built basic routes for a simple API
+ Implemented custom middleware for logging
+ Served static files using Express
+
+.`,
+            4: `<strong>MongoDB Introduction & Setup</strong><br/>
+    What I Learned:
+NoSQL vs SQL Databases**: Understanding the differences
+MongoDB Concepts**:
+   Documents and Collections
+    BSON format
+   MongoDB Atlas cloud setup
+   Local MongoDB installation
+Basic MongoDB Operations:
+   Creating databases and collections
+   CRUD operations using MongoDB shell
+   Data modeling concepts
+MongoDB Compass: GUI tool for database management
+
+ Practical Tasks:
+ Set up MongoDB Atlas account
+ Created first database and collection
+ Performed basic CRUD operations in MongoDB shell
+ Explored data using MongoDB Compass
+.`,
+            5: `<strong> Mongoose ODM</strong><br/>
+    What I Learned:
+Mongoose Object Data Modeling:
+   Installing and connecting to MongoDB
+   Schema definition and validation
+   Model creation and methods
+   Built-in validators and custom validation
+Schema Types: String, Number, Date, Boolean, Array, ObjectId
+Mongoose Methods:
+   Static methods vs instance methods
+   Middleware (pre/post hooks)
+   Virtual properties
+
+### Practical Tasks:
+ Connected Express app to MongoDB using Mongoose
+ Created user schema with validation
+ Built CRUD operations using Mongoose models
+ Implemented schema middleware for password hashing `,
+            6: `<strong> Advanced MongoDB Operations</strong><br/>
+    What I Learned:
+Advanced Queries**:
+   Query operators ($gt, $lt, $in, $or, $and)
+   Regular expressions in queries
+ Sorting, limiting, and skipping results
+ Field selection and projection
+Aggregation Pipeline:
+ $match, $group, $sort stages
+ $lookup for joining collections
+ $project for field transformation Indexing: Creating indexes for better performance Data Relationships: One-to-One, One-to-Many, Many-to-Many
+
+### Practical Tasks: Built complex queries using various operators Created aggregation pipelines for data analysis Implemented data relationships in schemas Optimized queries with proper indexing
+
+.`,
+            7: `<strong>Building RESTful APIs with Express</strong><br/>
+      What I Learned:
+REST API Principles:
+ Resource-based URLs
+   HTTP methods and status codes
+   Stateless communication
+ JSON data format
+API Design Patterns:
+ Resource naming conventions
+ Nested resources
+ Filtering, sorting, and pagination Express Router: Organizing routes in separate modules Input Validation: Using express-validator
+
+ Practical Tasks: Built a complete CRUD API for user management Implemented proper HTTP status codes Created modular route structure Added input validation and error handling .`,
+            8: `<strong>Authentication & Authorization</strong><br/>
+     What I Learned:
+Authentication vs Authorization: Understanding the difference
+JWT (JSON Web Tokens:
+ Token structure and signing
+ Creating and verifying tokens
+ Token expiration and refresh
+ Password Security**:
+ Hashing with bcrypt
+ Salt and pepper concepts
+ Password strength validation
+bProtected Routes: Implementing authentication middleware
+
+ Practical Tasks:
+Implemented user registration with password hashing
+ Built login system with JWT generation
+Created authentication middleware
+ Protected API routes with JWT verification.`,
+            9: `<strong>Error Handling & Validation</strong><br/>
+      What I Learned:
+Error Handling Strategies:
+   Try-catch blocks with async/await
+   Global error handling middleware
+   Custom error classes
+   Error logging and monitoring
+Data Validation:
+   Server-side validation importance
+   Using Joi for object schema validation
+   Express-validator middleware
+   Custom validation functions
+HTTP Status Codes: Proper usage of 2xx, 4xx, 5xx codes
+
+ Practical Tasks:
+ Implemented comprehensive error handling system
+ Added data validation to all API endpoints
+ Created custom error response format
+ Built error logging mechanism
+
+ .`,
+            10: `<strong>React.js Fundamentals</strong><br/>
+   What I Learned:
+React Introduction:
+   Virtual DOM concept
+   Component-based architecture
+   JSX syntax and rules
+  Create React App setup
+Components:
+   Function vs Class components
+   Props and PropTypes
+   Component composition
+  Conditional rendering
+State Management: useState hook basics
+Event Handling: Synthetic events in React
+
+ Practical Tasks:
+ Created first React application
+ Built reusable components with props
+ Implemented state management with useState
+ Created interactive components with event handlers.`,
+            11: `<strong> React Hooks & State Management</strong><br/>
+    What I Learned:
+React Hooks Deep Dive:
+   useState for local state
+   useEffect for side effects
+   useContext for prop drilling solution
+   Custom hooks creation
+Component Lifecycle**: Understanding useEffect dependencies
+State Patterns**:
+   Lifting state up
+   State colocation
+   Derived state concepts
+
+ Practical Tasks:
+ Built components using various hooks
+ Implemented data fetching with useEffect
+ Created custom hooks for reusable logic
+ Managed complex state scenarios
+..`,
+            12: `<strong>React Router & Navigation</strong><br/>
+           What I Learned:
+React Router:
+   BrowserRouter vs HashRouter
+   Route configuration
+   Navigate programmatically
+   URL parameters and query strings
+Navigation Components:
+   Link vs NavLink
+   Nested routing
+   Protected routes
+   Route guards implementation
+Dynamic Routing: Building flexible navigation systems
+
+### Practical Tasks:
+ Set up multi-page React application
+ Implemented navigation with React Router
+ Created protected routes with authentication
+ Built dynamic routing with URL parameters .`,
+            13: `<strong> Forms & User Input in React</strong><br/>
+    What I Learned:
+Form Handling:
+   Controlled vs uncontrolled components
+   Form validation strategies
+   Handling multiple inputs
+   Form submission and data processing
+Form Libraries: Introduction to Formik and React Hook Form
+Input Components:
+   Text, email, password inputs
+   Checkboxes and radio buttons
+   Select dropdowns and multi-select
+User Experience: Loading states, error messages, success feedback
+
+ Practical Tasks:
+ Built complex forms with multiple input types
+ Implemented form validation with custom logic
+ Created reusable form components
+ Added user feedback for form interactions
+.`,
+            14: `<strong>HTTP Requests & API Integration</strong><br/> 
+  What I Learned:
+HTTP Requests in React:
+   Fetch API vs Axios
+   Making GET, POST, PUT, DELETE requests
+   Handling async operations
+   Error handling in HTTP requests
+Data Fetching Patterns:
+   Loading states management
+   Error state handling
+   Data caching strategies
+   Optimistic updates
+Environment Variables: Managing API endpoints
+
+### Practical Tasks:
+ Integrated React frontend with Express API
+ Implemented CRUD operations from frontend
+ Added loading and error states
+ Created data fetching custom hooks.`,
+            15: `<strong> State Management with Context API</strong><br/>
+    What I Learned:
+Context API:
+   Creating context providers
+   useContext hook usage
+   Provider pattern implementation
+   Context vs props comparison
+Global State Management:
+   User authentication state
+   Theme and preferences
+   Shopping cart implementation
+Performance Optimization: useCallback and useMemo hooks
+
+### Practical Tasks:
+ Implemented global authentication context
+ Created theme switching functionality
+ Built shopping cart with context
+ Optimized components for better performance`,
+            16: `<strong> Styling & UI Components</strong><br/>
+       What I Learned:
+CSS-in-JS Solutions**:
+   Styled-components basics
+   CSS Modules implementation
+   Emotion library usage
+UI Frameworks:
+   Material-UI (MUI) integration
+   Bootstrap with React
+   Tailwind CSS setup
+Responsive Design: Mobile-first approach in React
+Component Libraries: Building reusable UI components
+
+### Practical Tasks:
+ Styled React application with multiple approaches
+ Implemented responsive design patterns Created custom component library
+ Integrated third-party UI framework
+`,
+            17: `<strong>Full-Stack Integration</strong><br/>
+     What I Learned:
+Frontend-Backend Communication:
+   CORS configuration
+   Proxy setup in development
+   Environment-specific API URLs
+Authentication Flow**:
+   Login/logout implementation
+   Token storage strategies
+   Automatic token refresh
+   Protected route implementation
+Data Flow: Complete CRUD operations across stack
+
+### Practical Tasks:
+ Connected React frontend to Express backend
+ Implemented complete authentication system
+ Built full CRUD functionality
+ Handled CORS and proxy configuration
+`,
+            18: `<strong>File Upload & Image Handling</strong><br/>
+   What I Learned:
+File Upload Implementation**:
+   Multer middleware for Express
+   File validation and size limits
+   Storage strategies (local vs cloud)
+Image Processing**:
+   Sharp library for image optimization
+   Cloudinary integration
+   Image resizing and compression
+Frontend File Handling:
+   File input components
+   Drag and drop functionality
+   Preview before upload
+
+### Practical Tasks:
+ Implemented file upload API endpoint
+ Created image upload component in React
+ Added image preview and validation
+ Integrated cloud storage solution
+
+.`,
+            19: `<strong>Testing & Debugging</strong><br/>
+     What I Learned:
+Testing Strategies:
+   Unit testing with Jest
+   React Testing Library basics
+   API testing with Supertest
+   Mocking dependencies
+Debugging Techniques:
+   Browser DevTools usage
+   Node.js debugging
+   React Developer Tools
+   Network tab analysis
+Error Monitoring: Implementing logging and error tracking
+
+### Practical Tasks:
+ Wrote unit tests for React components
+ Created API endpoint tests
+ Set up debugging environment
+ Implemented error boundary in React
+`,
+            20: `<strong>Deployment & Production</strong><br/>
+      What I Learned:
+Deployment Strategies:
+   Heroku deployment for full-stack apps
+   Netlify for React frontend
+   MongoDB Atlas for database
+   Environment variables management
+ Production Optimizations:
+   React build optimization
+   Express production settings
+   Database connection pooling
+   Security best practices
+ Monitoring & Maintenance:
+   Application monitoring
+   Performance optimization
+   Security updates
+
+### Practical Tasks:
+ Deployed complete MERN application
+ Configured production environment variables
+ Optimized application for production
+ Set up monitoring and logging.`,
+            21: `<strong>Final Project Completed</strong><br/>
+     ## *Final Project Completed*
+Built a complete MERN stack application with:
+ User authentication and authorization
+ CRUD operations for main entities
+ File upload functionality
+ Responsive frontend design
+ Production deployment
+ Comprehensive error handling
+ Proper security measures
+
+## Key Skills Acquired
+âœ… MongoDB database design and operations
+âœ… Express.js API development
+âœ… React.js frontend development
+âœ… Node.js server-side programming
+âœ… Authentication and security implementation
+âœ… Full-stack application architecture
+âœ… Deployment and production optimization
+âœ… Testing and debugging techniques
+
+## Next Steps for Continued Learning
+ Advanced React patterns (Redux, Context optimization)
+ GraphQL integration
+ Microservices architecture
+ Real-time features with Socket.io
+ Progressive Web App (PWA) development
+ Advanced MongoDB operations and optimization
+
+.`,
+        }
+        const daysContainer = document.getElementById("daysContainer");
+        const displayArea = document.getElementById("display-area");
+
+        // Create Day 1 to 21 divs
+        for (let i = 1; i <= 21; i++) {
+            const dayDiv = document.createElement("div");
+            dayDiv.classList.add("day-box");
+            dayDiv.textContent = "Day " + i;
+            dayDiv.onclick = () => showDay(i);
+            daysContainer.appendChild(dayDiv);
+        }
+
+        function showDay(day) {
+            displayArea.innerHTML = `
+              <h1>Work for Day ${day}</h1>
+              <p>${days[day]}</p>
+            `;
+        }
+        const dayDiv = document.createElement("div");
+        dayDiv.classList.add("day-box");
+        dayDiv.innerText = "Summary";
+        dayDiv.onclick = () => {
+            displayArea.innerHTML = `
+              <h2>🧾 Summary of 22 Days - MERN Stack Daily Diary</h2>
+              <p>Over the course of 22 days, we started our summer project by building a strong foundation in front-end web development. The first few days were dedicated to learning HTML and CSS, where we understood how to structure a web page, use semantic tags, and style layouts using Flexbox and Grid. We designed simple web pages such as a portfolio and landing page to practice these concepts. After that, we moved on to JavaScript, learning about variables, loops, arrays, functions, DOM manipulation, and event handling. This helped us make web pages interactive and dynamic. We also practiced building small projects like calculators and form validators to strengthen our logic and scripting skills.
+              In the second half of the project, we transitioned to modern development using the MERN stack — starting with React to create reusable components and manage state efficiently. We then moved to the backend using Node.js and Express.js, learning how to create RESTful APIs and handle server-side logic. Finally, we connected our application to MongoDB, learning how to store, retrieve, and manage data efficiently in a NoSQL database. By the end of the 22 days, we were able to integrate all technologies to build a full-stack web application, gaining a clear understanding of how frontend and backend systems interact in real-world projects.
+              Would you like me to also give individual day-by-day detailed entries (Day 1-Day 22) after this summary — about what exactly you did or learned each day? It’ll make your diary look more complete for submission.</p>
+              `;
+        };
+        daysContainer.appendChild(dayDiv);
+    </script>
+</body>
+
+</html>
